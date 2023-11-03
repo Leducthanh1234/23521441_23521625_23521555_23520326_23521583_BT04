@@ -4,6 +4,7 @@ using namespace std;
 
 void Nhap(int[][100], int&, int&);
 void Xuat(int[][100], int, int);
+
 void HoanVi(int&, int&);
 void LeGiam(int[][100], int, int);
 void ChanTang(int[][100], int, int);
@@ -13,9 +14,11 @@ int main()
 {
     int b[100][100];
     int k, l;
+    
+    cout << "Ma tran: \n";
     Nhap(b, k, l);
 
-    cout << "Ma tran ban dau: \n";
+    cout << "\nMa tran ban dau : " << endl;
     Xuat(b, k, l);
 
     ChanTangLeGiam(b, k, l);
@@ -25,23 +28,23 @@ int main()
     return 0;
 }
 
-void Nhap(int a[][100], int& n, int& m)
+void Nhap(int a[][100], int& m, int& n)
 {
     cout << "Nhap so dong: ";
-    cin >> n;
-    cout << "Nhap so cot: ";
     cin >> m;
+    cout << "Nhap so cot: ";
+    cin >> n;
     srand(time(NULL));
-    for (int i = 0; i < n; i++)
-        for (int j = 0; j < m; j++)
+    for (int i = 0; i < m; i++)
+        for (int j = 0; j < n; j++)
             a[i][j] = rand() % (200 + 1) - 100;
 }
 
-void Xuat(int a[][100], int n, int m)
+void Xuat(int a[][100], int m, int n)
 {
-    for (int i = 0; i < n; i++)
+    for (int i = 0; i < m; i++)
     {
-        for (int j = 0; j < m; j++)
+        for (int j = 0; j < n; j++)
             cout << setw(10) << a[i][j];
         cout << endl;
     }
@@ -59,13 +62,15 @@ void ChanTang(int a[][100], int m, int n)
     int b[100];
     int k;
     int i, j;
+
     k = 0;
     for (i = 0; i < m; i++)
         for (j = 0; j < n; j++)
             if (a[i][j] % 2 == 0)
                 b[k++] = a[i][j];
+
     for (i = 0; i <= k - 2; i++)
-        for (j = i+1; j <= k - 1; j++)
+        for (j = i + 1; j <= k - 1; j++)
             if (b[j] < b[i])
                 HoanVi(b[i], b[j]);
     k = 0;
@@ -80,15 +85,18 @@ void LeGiam(int a[][100], int m, int n)
     int b[100];
     int k;
     int i, j;
+
     k = 0;
     for (i = 0; i < m; i++)
         for (j = 0; j < n; j++)
             if (a[i][j] % 2 != 0)
                 b[k++] = a[i][j];
+
     for (i = 0; i <= k - 2; i++)
         for (j = i+1; j <= k - 1; j++)
             if (b[j] > b[i])
                 HoanVi(b[i], b[j]);
+
     k = 0;
     for (i = 0; i < m; i++)
         for (j = i; j < n; j++)

@@ -4,18 +4,19 @@ using namespace std;
 
 void Nhap(int[][100], int&, int&);
 void Xuat(int[][100], int, int);
-int ktDong(int[][100], int, int,int);
+
+bool ktDong(int[][100], int, int,int);
 void Lietke(int[][100], int, int);
 
 int main()
 {
 	int b[100][100];
 	int k, l;
-
+	
 	cout << "Ma tran: \n";
 	Nhap(b, k, l);
 
-	cout << "\nMa tran ban dau: \n";
+	cout << "\nMa tran ban dau : " << endl;
 	Xuat(b, k, l);
 
 	cout << "\nCac dong chua gia tri chan la:";
@@ -47,12 +48,12 @@ void Xuat(int a[][100], int m, int n)
 	}
 }
 
-int ktDong(int a[][100], int m, int n, int d)
+bool ktDong(int a[][100], int m, int n, int d)
 {
-	int flag = 0;
+	bool flag = false;
 	for (int j = 0; j < n; j++)
 		if (a[d][j] % 2 == 0)
-			flag = 1;
+			flag = true;
 	return flag;
 }
 
@@ -60,5 +61,5 @@ void Lietke(int a[][100], int m, int n)
 {
 	for (int i = 0; i < m; i++)
 		if (ktDong(a, m, n, i) == 1)
-			cout << setw(8) << i;
+			cout << setw(10) << i;
 }

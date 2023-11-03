@@ -2,31 +2,32 @@
 #include <iomanip>
 using namespace std;
 
-void Nhap(int[][500], int&, int&);
-void Xuat(int[][500], int, int);
+void Nhap(int[][100], int&, int&);
+void Xuat(int[][100], int, int);
+
 void HoanVi(int&, int&);
 bool ktNguyenTo(int);
-void XuatNguyenToTang(int[][500], int, int);
+void XuatNguyenToTang(int[][100], int, int);
 
 int main()
 {
-	int k[500][500];
-	int a, b;
+	int b[100][100];
+	int k, l;
+	
+	cout << "Ma tran: \n";
+	Nhap(b, k, l);
 
-	cout << "Nhap ma tran: ";
-	Nhap(k, a, b);
-
-	cout << "\nMa tran: " << endl;
-	Xuat(k, a, b);
+	cout << "\nMa tran ban dau : " << endl;
+	Xuat(b, k, l);
 
 	cout << "\nDay nguyen to tang: " << endl;
-	XuatNguyenToTang(k, a, b);
+	XuatNguyenToTang(b, k, l);
 
 	cout << "\n\n\nKet Thuc!!!";
 	return 0;
 }
 
-void Nhap(int a[][500], int& m, int& n)
+void Nhap(int a[][100], int& m, int& n)
 {
 	cout << "\nNhap so dong: ";
 	cin >> m;
@@ -38,7 +39,7 @@ void Nhap(int a[][500], int& m, int& n)
 			a[i][j] = rand() % (201) - 100;
 }
 
-void Xuat(int a[][500], int m, int n)
+void Xuat(int a[][100], int m, int n)
 {
 	for (int i = 0; i < m; i++)
 	{
@@ -64,16 +65,15 @@ bool ktNguyenTo(int k)
 	return (dem == 2);
 }
 
-void XuatNguyenToTang(int a[][500], int m, int n)
+void XuatNguyenToTang(int a[][100], int m, int n)
 {
-	int b[500];
-	int k;
+	int b[100];
 	int i, j;
 
-	k = 0;
+	int k = 0;
 	for (i = 0; i < m; i++)
 		for (j = 0; j < n; j++)
-			if (ktNguyenTo(a[i][j]) == 1)
+			if (ktNguyenTo(a[i][j]))
 				b[k++] = a[i][j];
 
 	for (i = 0; i <= k - 2; i++)

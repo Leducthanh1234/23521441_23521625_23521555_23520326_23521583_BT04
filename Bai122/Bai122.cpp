@@ -25,23 +25,23 @@ int main()
     return 0;
 }
 
-void Nhap(float a[][100], int& n, int& m)
+void Nhap(float a[][100], int& m, int& n)
 {
     cout << "Nhap so dong: ";
-    cin >> n;
-    cout << "Nhap so cot: ";
     cin >> m;
+    cout << "Nhap so cot: ";
+    cin >> n;
     srand(time(NULL));
-    for (int i = 0; i < n; i++)
-        for (int j = 0; j < m; j++)
+    for (int i = 0; i < m; i++)
+        for (int j = 0; j < n; j++)
             a[i][j] = rand() / (RAND_MAX / 200.0) - 100.0;
 }
 
-void Xuat(float a[][100], int n, int m)
+void Xuat(float a[][100], int m, int n)
 {
-    for (int i = 0; i < n; i++)
+    for (int i = 0; i < m; i++)
     {
-        for (int j = 0; j < m; j++)
+        for (int j = 0; j < n; j++)
             cout << fixed << setw(10) << setprecision(3) << a[i][j];
         cout << endl;
     }

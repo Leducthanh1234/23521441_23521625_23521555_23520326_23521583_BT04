@@ -8,23 +8,24 @@ void Xuat(float[][100], int, int);
 void BienMaTran(float[][100], int, int, float[], int&);
 void HoanVi(float&, float&);
 void SapXep(float[], int);
-void DuongBienTang(float[][100], int, int, float[], int);
+void BienTang(float[][100], int, int, float[], int);
 
 int main()
 {
 	float b[100][100];
-	float c[100];
-	int k, l, g;
-
-	cout << "\nNhap ma tran " << endl;
+	int k, l;
+	cout << "Ma tran: \n";
 	Nhap(b, k, l);
 
-	cout << "\nMa tran ban dau : " << endl;
+	cout << "\nMa tran ban dau:\n";
 	Xuat(b, k, l);
+
+	float c[100];
+	int g;
 
 	BienMaTran(b, k, l, c, g);
 	SapXep(c, g);
-	DuongBienTang(b, k, l, c, g);
+	BienTang(b, k, l, c, g);
 
 	cout << "\nMa tran sau sap xep : " << endl;
 	Xuat(b, k, l);
@@ -56,9 +57,9 @@ void Xuat(float a[][100], int m, int n)
 
 void HoanVi(float& a, float& b)
 {
-	a = a + b;
-	b = a - b;
-	a = a - b;
+	float temp = a;
+	a = b;
+	b = temp;
 }
 
 void BienMaTran(float a[][100], int m, int n, float b[], int& kk)
@@ -91,11 +92,11 @@ void SapXep(float b[], int kk)
 {
 	for (int i = 0; i < kk - 1; i++)
 		for (int j = i + 1; j < kk; j++)
-			if ((b[i] > b[j]) && (b[i] > 0 && b[j] > 0))
+			if (b[i] > b[j])
 				HoanVi(b[i], b[j]);
 }
 
-void DuongBienTang(float a[][100], int m, int n , float b[], int kk)
+void BienTang(float a[][100], int m, int n, float b[], int kk)
 {
 	int h = 0;
 	for (int j = 0; j < n - 1; j++)

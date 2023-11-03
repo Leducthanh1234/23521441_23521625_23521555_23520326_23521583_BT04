@@ -1,20 +1,23 @@
 #include<iostream>
-#include<cfloat>
 #include<cmath>
 #include<iomanip>
 using namespace std;
 
 void Nhap(float[][100], int&, int&);
 void Xuat(float[][100], int, int);
+
+bool ktDongGiam(float[][100], int, int, int);
+bool ktCotGiam(float[][100], int, int, int);
 bool ktGiam(float[][100], int, int);
 
 int main()
 {
 	float b[100][100];
 	int k, l;
+	cout << "Ma tran: \n";
 	Nhap(b, k, l);
 
-	cout << "\nMa tran ban dau:\n";
+	cout << "Ma tran ban dau:\n";
 	Xuat(b, k, l);
 
 	if (ktGiam(b, k, l))
@@ -34,7 +37,7 @@ void Nhap(float a[][100], int& m, int& n)
 	srand(time(NULL));
 	for (int i = 0; i < m; i++)
 		for (int j = 0; j < n; j++)
-			a[i][j] = -100.0 + (rand() / (RAND_MAX / (100.0 - (-100.0))));
+			a[i][j] = -100 + rand() / ((float)RAND_MAX / 200);
 }
 
 void Xuat(float a[][100], int m, int n)
@@ -47,22 +50,30 @@ void Xuat(float a[][100], int m, int n)
 	}
 }
 
+bool ktDongGiam(float a[][100], int m, int n, int d)
+{
+	for (int j = 0; j <= n - 2; j++)
+			if (a[d][j] < a[d][j+1])
+				return false;
+	return true;
+}
+
+bool ktCotGiam(float a[][100], int m, int n, int c)
+{
+	for (int i = 0; i <= m - 2; i++)
+		if (a[i][c] < a[i + 1][c])
+			return false;
+	return true;
+}
+
 bool ktGiam(float a[][100], int m, int n)
 {
-	a[m][0] = FLT_MAX;
-	int c, d;
-	for (int i = 0;i < m;i++)
-		for (int j = 0;j < n;j++)
-		{
-			d = i;
-			c = j + 1;
-			if (c == n)
-			{
-				c = 0;
-				d = i + 1;
-			}
-			if (a[i][j] > a[d][c])
-				return false;
-		}
+	for (int i = 0; i < m; i++)
+		if (ktDongGiam(a, m, n, i) == false)
+			return false;
+
+	for (int j = 0; j < n; j++)
+		if (ktCotGiam(a, m, n, j) == false)
+			return false;
 	return true;
 }

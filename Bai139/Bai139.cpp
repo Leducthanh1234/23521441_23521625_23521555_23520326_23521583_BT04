@@ -2,35 +2,56 @@
 #include<iomanip>
 #include<cmath>
 using namespace std;
+
 void Nhap(float[][100], int&, int&);
-void SapXep(float[][100], int, int);
 void Xuat(float[][100], int, int);
+
+void SapXep(float[][100], int, int);
+
 int main()
 {
-	float a[100][100];
-	int m, n;
-	Nhap(a, m, n);
-	SapXep(a, m, n);
-	Xuat(a, m, n);
+	float b[100][100];
+	int k, l;
+	cout << "Ma tran: \n";
+	Nhap(b, k, l);
+
+	cout << "\nMa tran ban dau:\n";
+	Xuat(b, k, l);
+
+	SapXep(b, k, l);
+	Xuat(b, k, l);
 	return 0;
 }
+
 void Nhap(float a[][100], int& m, int& n)
 {
-	cout << "Nhap m:";
+	cout << "Nhap so dong: ";
 	cin >> m;
-	cout << "Nhap n:";
+	cout << "Nhap so cot: ";
 	cin >> n;
-	cout << "Nhap cac phan tu cua ma tran:" << endl;
-	for (int i = 0;i < m;i++)
-		for (int j = 0;j < n;j++)
-		{
-			cout << "A[" << i << "," << j << "] = ";
-			cin >> a[i][j];
-		}
+	srand(time(NULL));
+	for (int i = 0; i < m; i++)
+		for (int j = 0; j < n; j++)
+			a[i][j] = -100 + rand() / ((float)RAND_MAX / 200);
+}
+
+void Xuat(float a[][100], int m, int n)
+{
+	for (int i = 0; i < m; i++)
+	{
+		for (int j = 0; j < n; j++)
+			cout << fixed << setw(10) << setprecision(3) << a[i][j];
+		cout << endl;
+	}
 }
 void SapXep(float a[][100], int m, int n)
 {
-	int dong = m, cot = n, k = 1, p = 0, i, j;
+	int dong = m;
+	int cot = n;
+	int p = 0;
+	int i, j;
+
+	int k = 1;
 	while (k <= m * n)
 	{
 		for (i = p; i < cot; i++)
@@ -48,15 +69,5 @@ void SapXep(float a[][100], int m, int n)
 				a[i][p] = k++;
 		}
 		p++;dong--; cot--;
-	}
-}
-void Xuat(float a[][100], int m, int n)
-{
-	cout << "Ma tran sau khi sap xep la:" << endl;
-	for (int i = 0;i < m;i++)
-	{
-		for (int j = 0;j < n;j++)
-			cout << setw(4) << a[i][j];
-		cout << endl;
 	}
 }

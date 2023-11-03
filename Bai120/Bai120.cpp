@@ -1,13 +1,12 @@
-#include<iostream>
-#include<cmath>
-#include<iomanip>
+#include <iostream>
+#include <iomanip>
 using namespace std;
 
 void Nhap(int[][100], int&, int&);
 void Xuat(int[][100], int, int);
 
-void HoanVi(int&, int&);
-void XuatChanGiam(int[][100], int, int);
+void NhapDong(int&, int&);
+void HoanViDong(int[][100], int, int, int, int);
 
 int main()
 {
@@ -20,8 +19,13 @@ int main()
 	cout << "\nMa tran ban dau : " << endl;
 	Xuat(b, k, l);
 
-	XuatChanGiam(b, k, l);
-	cout << "\n\n\nKet Thuc!!!";
+	int l1, l2;
+	NhapDong(l1, l2);
+
+	HoanViDong(b, k, l, l1, l2);
+	cout << "\nMa tran sau khi hoan vi dong " << l1 << " va " << l2 << " la:";
+	Xuat(b, k, l);
+	cout << "\n\n\nKet Thuc!";
 	return 0;
 }
 
@@ -47,30 +51,17 @@ void Xuat(int a[][100], int m, int n)
 	}
 }
 
-void HoanVi(int& a, int& b)
+void NhapDong(int& d1, int& d2)
 {
-	int temp = a;
-	a = b;
-	b = temp;
+	cout << "\nNhap vao 2 dong can doi voi nhau:";
+	cout << "\nDong dau tien, dong: ";
+	cin >> d1;
+	cout << "Dong thu 2, dong: ";
+	cin >> d2;
 }
 
-void XuatChanGiam(int a[][100], int m, int n)
+void HoanViDong(int a[][100], int m, int n, int d1, int d2)
 {
-	int i, j;
-	int b[100];
-
-	int k = 0;
-	cout << "Cac gia tri chan trong ma tran theo thu tu giam dan: \n";
-	for (i = 0; i < m; i++)
-		for (j = 0; j < n; j++)
-			if (a[i][j] % 2 == 0)
-				b[k++] = a[i][j];
-
-	for (i = 0; i <= k - 2; i++)
-		for (j = i + 1; j <= k - 1; j++)
-			if (b[i] < b[j])
-				HoanVi(b[i], b[j]);
-
-	for (i = 0; i < k; i++)
-		cout << setw(10) << b[i];
+	for (int j = 0; j < n; j++)
+		swap(a[d1][j], a[d2][j]);
 }

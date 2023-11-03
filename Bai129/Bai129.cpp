@@ -4,13 +4,15 @@
 using namespace std;
 
 void Nhap(float[][100], int&, int&);
-void SapTang(float[][100], int, int);
 void Xuat(float[][100], int, int);
+
+void SapTang(float[][100], int, int);
 
 int main()
 {
 	float b[100][100];
 	int k, l;
+	cout << "Ma tran: \n";
 	Nhap(b, k, l);
 
 	cout << "\nMa tran ban dau:\n";
@@ -33,7 +35,8 @@ void Nhap(float a[][100], int& m, int& n)
 	srand(time(NULL));
 	for (int i = 0; i < m; i++)
 		for (int j = 0; j < n; j++)
-			a[i][j] = -100.0 + (rand() / (RAND_MAX / (100.0 - (-100.0))));
+			a[i][j] = -100 + rand() / ((float)RAND_MAX / 200);
+}
 }
 
 void Xuat(float a[][100], int m, int n)
@@ -56,7 +59,11 @@ void SapTang(float a[][100], int m, int n)
 	for (int i = 0;i < k;i++)
 		for (int j = i + 1;j < k;j++)
 			if (b[i] > b[j])
-				swap(b[i], b[j]);
+			{
+				float temp = b[i];
+				b[i] = b[j];
+				b[j] = temp;
+			}
 	k = 0;
 	for (int i = 0;i < m;i++)
 		for (int j = 0;j < n;j++)

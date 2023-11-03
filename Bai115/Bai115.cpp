@@ -5,19 +5,19 @@ using namespace std;
 void Nhap(float[][100], int&, int&);
 void Xuat(float[][100], int, int);
 
-bool ktCot(float[][100], int, int, int);
+bool ktDong(float[][100], int, int, int);
 void LietKe(float[][100], int, int);
 
 int main()
 {
-   float b[100][100];
-	int k, l;
-	
-	cout << "Ma tran: \n";
-	Nhap(b, k, l);
+    float b[100][100];
+    int k, l;
+    
+    cout << "Ma tran: \n";
+    Nhap(b, k, l);
 
-	cout << "\nMa tran ban dau:\n";
-	Xuat(b, k, l);
+    cout << "\nMa tran ban dau:\n";
+    Xuat(b, k, l);
 
     LietKe(b, k, l);
     cout << "\n\n\nKet thuc!!!";
@@ -46,28 +46,28 @@ void Xuat(float a[][100], int m, int n)
     }
 }
 
-bool ktCot(float a[][100], int m, int n, int xx)
-{
-	for (int j = 0; j < n - 1; j++)
-		for (int h = j + 1; h < n; h++)
-            if (a[h][xx] <= a[j][xx])
-			return false;
-	return true;
+bool ktDong(float a[][100], int m, int n, int xx)
+{ 
+    for (int j = 0; j < n - 1; j++)
+        for (int h = j + 1; h < n; h++)
+            if (a[xx][h] <= a[xx][j])
+                return false;
+    return true;
 }
 
 void LietKe(float a[][100], int m, int n)
 {
-	int flag = 1;
-	for (int j = 0; j < n; j++)
-		if (ktCot(a, m, n, j))
-			flag = 0;
-	if (flag == 1)
-		cout << "khong co cot nao tang dan";
-	else
-	{
-		cout << "\nCac cot tang dan la:" << endl;
-		for (int j = 0; j < n; j++)
-			if (ktCot(a, m, n, j))
-				cout << setw(10) << j << endl;
-	}
+    int flag = 1;
+    for (int j = 0; j < n; j++)
+        if (ktDong(a, m, n, j))
+            flag = 0;
+    if (flag == 1)
+        cout << "khong co dong nao giam dan";
+    else
+    {
+        cout << "\nCac cot tang dan la:" << endl;
+        for (int j = 0; j < n; j++)
+            if (ktDong(a, m, n, j))
+                cout << setw(10) << j << endl;
+    }
 }

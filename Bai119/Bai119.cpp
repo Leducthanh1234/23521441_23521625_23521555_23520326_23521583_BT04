@@ -4,27 +4,28 @@ using namespace std;
 
 void Nhap(float[][100], int&, int&);
 void Xuat(float[][100], int, int);
+
 void XuatMaTranB(int[][100], int, int);
 void XayDung(float[][100], int, int, int[][100], int&, int&);
 int DemLanCan(float[][100], int, int, int, int);
 
-
 int main()
 {
-	float a[100][100];
-	int b[100][100];
-	int n, m, k, l;
-
+	float b[100][100];
+	int k, l;
 	cout << "Ma tran: \n";
-	Nhap(a, m, n);
+	Nhap(b, k, l);
 
-	cout << "Ma tran a la: \n";
-	Xuat(a, m, n);
+	cout << "\nMa tran a:\n";
+	Xuat(b, k, l);
 
-	XayDung(a, m, n, b,k, l);
+	int c[100][100];
+	int x, y;
 
-	cout << "Ma tran b la: \n";
-	XuatMaTranB(b, m, n);
+	XayDung(b, k, l, c, x, y);
+
+	cout << "Ma tran b: \n";
+	XuatMaTranB(c, k, l);
 
 	cout << "\n\n\nKet thuc!!!";
 	return 0;
@@ -67,8 +68,9 @@ int DemLanCan(float a[][100], int m, int n, int d, int c)
 	int dem = 0;
 	for (int di = -1; di <= 1; di++)
 		for (int dj = -1; dj <= 1; dj++)
-			if (d + di >= 0 && d + di < m && c + dj >= 0 && c + dj < n && !(di == 0 && dj == 0) && a[d + di][c + dj]>0)
-				dem++;
+			if (d + di >= 0 && d + di < m && c + dj >= 0 && c + dj < n && !(di == 0 && dj == 0))
+				if(a[d + di][c + dj] > 0)
+					dem++;
 	return dem;
 }
 

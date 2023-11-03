@@ -4,6 +4,7 @@ using namespace std;
 
 void Nhap(float[][100], int&, int&);
 void Xuat(float[][100], int, int);
+
 void DuongGiam(float[][100], int, int);
 void AmTang(float[][100], int, int);
 void SapXep(float[][100], int, int);
@@ -12,30 +13,30 @@ int main()
 {
     float b[100][100];
     int k, l;
-
+    cout << "Ma tran: \n";
     Nhap(b, k, l);
-    cout << "Ma tran ban dau: " << endl;
-    Xuat(b, k, l);
+
+    cout << "\nMa tran ban dau:\n";
+    Xuat(b, k, l);;
+
     SapXep(b, k, l);
-    cout << "Ma tran luc sau: " << endl;
+    cout << "\nMa tran luc sau: " << endl;
     Xuat(b, k, l);
 
-    cout << "Ket thuc!!!\n\n\n";
+    cout << "\n\n\nKet thuc!!!";
     return 0;
 }
 
 void Nhap(float a[][100], int& m, int& n)
 {
-    cout << "Nhap m : ";
+    cout << "Nhap so dong: ";
     cin >> m;
-    cout << "Nhap n : ";
+    cout << "Nhap so cot: ";
     cin >> n;
+    srand(time(NULL));
     for (int i = 0; i < m; i++)
         for (int j = 0; j < n; j++)
-        {
-            cout << "Nhap a[" << i << "][" << j << "]:";
-            cin >> a[i][j];
-        }
+            a[i][j] = -100 + rand() / ((float)RAND_MAX / 200);
 }
 
 void Xuat(float a[][100], int m, int n)
@@ -69,7 +70,8 @@ void DuongGiam(float a[][100], int m, int n)
 
     for (i = 0; i <= k - 2; i++)
         for (j = i + 1; j <= k - 1; j++)
-            HoanVi(b[i], b[j]);
+            if (b[i] < b[j])
+                swap(b[i], b[j]);
 
     k = 0;
     for (i = 0; i < m; i++)
@@ -93,7 +95,7 @@ void AmTang(float a[][100], int m, int n)
     for (i = 0; i <= k - 2; i++)
         for (j = i + 1; j <= k - 1; j++)
             if (b[i] > b[j])
-                HoanVi(b[i], b[j]);
+                swap(b[i], b[j]);
 
     k = 0;
     for (i = 0; i < m; i++)

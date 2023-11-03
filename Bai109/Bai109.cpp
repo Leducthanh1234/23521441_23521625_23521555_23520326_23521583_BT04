@@ -1,11 +1,11 @@
-#include<iostream>
-#include<iomanip>
+#include <iostream>
+#include <iomanip>
 using namespace std;
 
 void Nhap(float[][100], int&, int&);
 void Xuat(float[][100], int, int);
 
-bool ktDong(float[][100], int, int, int);
+int ktDong(float[][100], int, int, int);
 void LietKe(float[][100], int, int);
 
 int main()
@@ -16,24 +16,24 @@ int main()
 	cout << "Ma tran: \n";
 	Nhap(b, k, l);
 
-	cout << "\nMa tran ban dau:\n";
+	cout << "\nMa tran ban dau : " << endl;
 	Xuat(b, k, l);
 
 	LietKe(b, k, l);
-	cout << "\n\n\nKet Thuc!!!";
+	cout << "\n\n\nKet Thuc!";
 	return 0;
 }
 
 void Nhap(float a[][100], int& m, int& n)
 {
-	cout << "\nNhap so dong: ";
+	cout << "Nhap so dong: ";
 	cin >> m;
-	cout << "\nNhap so cot: ";
+	cout << "Nhap so cot: ";
 	cin >> n;
 	srand(time(NULL));
 	for (int i = 0; i < m; i++)
 		for (int j = 0; j < n; j++)
-			a[i][j] = -100 + rand() / ((float)RAND_MAX / 200);;
+			a[i][j] = rand() % (200 + 1) - 100;
 }
 
 void Xuat(float a[][100], int m, int n)
@@ -46,30 +46,18 @@ void Xuat(float a[][100], int m, int n)
 	}
 }
 
-bool ktDong(float a[][100], int m, int n, int d)
+int ktDong(float a[][100], int m, int n, int d)
 {
-	bool flag = true;
 	for (int j = 0; j < n; j++)
-	{
-		if (a[d][j] > 0)
-			flag = false;
-	}
-	return flag;
+		if (a[d][j] < 0)
+			return 1;
+	return 0;
 }
 
 void LietKe(float a[][100], int m, int n)
 {
-	int dem = 0;
+	cout << "\nCac dong chua gia tri am trong ma tran: ";
 	for (int i = 0; i < m; i++)
 		if (ktDong(a, m, n, i))
-			dem++;
-	if (dem == 0)
-		cout << "\Khong co dong toan am!!";
-	else
-	{
-		cout << "\nCac dong toan am la: ";
-		for (int i = 0; i < m; i++)
-			if (ktDong(a, m, n, i))
-				cout << setw(10) << i;
-	}
+			cout << setw(10) << i;
 }

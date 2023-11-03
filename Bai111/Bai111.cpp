@@ -4,6 +4,7 @@ using namespace std;
 
 void Nhap(float[][100], int&, int&);
 void Xuat(float[][100], int, int);
+
 int ktDong(float[][100], int, int, int);
 void LietKe(float[][100], int, int);
 
@@ -11,9 +12,11 @@ int main()
 {
 	float b[100][100];
 	int k, l;
+	
+	cout << "Ma tran: \n";
 	Nhap(b, k, l);
 
-	cout << "Ma tran ban dau:\n";
+	cout << "\nMa tran ban dau:\n";
 	Xuat(b, k, l);
 
 	cout << "Cac dong thoa dieu kien la: ";
@@ -22,23 +25,23 @@ int main()
 	return 0;
 }
 
-void Nhap(float a[][100], int& n, int& m)
+void Nhap(float a[][100], int& m, int& n)
 {
 	cout << "Nhap so dong: ";
-	cin >> n;
-	cout << "Nhap so cot: ";
 	cin >> m;
+	cout << "Nhap so cot: ";
+	cin >> n;
 	srand(time(NULL));
-	for (int i = 0; i < n; i++)
-		for (int j = 0; j < m; j++)
+	for (int i = 0; i < m; i++)
+		for (int j = 0; j < n; j++)
 			a[i][j] = rand() / (RAND_MAX / 200.0) - 100.0;
 }
 
-void Xuat(float a[][100], int n, int m)
+void Xuat(float a[][100], int m, int n)
 {
-	for (int i = 0; i < n; i++)
+	for (int i = 0; i < m; i++)
 	{
-		for (int j = 0; j < m; j++)
+		for (int j = 0; j < n; j++)
 			cout << fixed << setw(10) << setprecision(3) << a[i][j];
 		cout << endl;
 	}
@@ -46,7 +49,9 @@ void Xuat(float a[][100], int n, int m)
 
 int ktDong(float a[][100], int m, int n, int d)
 {
-	int flagDuong = 0, flagAm = 0, flag = 0;
+	int flagDuong = 0;
+	int	flagAm = 0;
+	int	flag = 0;
 	for (int j = 0; j < n; j++)
 	{
 		if (a[d][j] > 0)
@@ -63,5 +68,5 @@ void LietKe(float a[][100], int m, int n)
 {
 	for (int i = 0; i < m; i++)
 		if (ktDong(a, m, n, i) == 1)
-			cout << setw(4) << i;
+			cout << setw(10) << i;
 }

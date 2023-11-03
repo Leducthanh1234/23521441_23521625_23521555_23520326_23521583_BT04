@@ -5,19 +5,18 @@ using namespace std;
 
 void Nhap(float[][100], int&, int&);
 void Xuat(float[][100], int, int);
+
 void DuongTang(float [][100], int, int);
 
 int main()
 {
 	float b[100][100];
 	int k, l;
-
 	cout << "Ma tran: \n";
 	Nhap(b, k, l);
 
-	cout << "\nMa tran ban dau: \n";
+	cout << "\nMa tran ban dau:\n";
 	Xuat(b, k, l);
-
 	DuongTang(b,k,l);
 
 	cout << "\nMang sau khi sap xep tang dan: \n";

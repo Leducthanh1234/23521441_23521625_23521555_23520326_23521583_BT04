@@ -2,31 +2,32 @@
 #include <iomanip>
 using namespace std;
 
-void Nhap(int[][500], int&, int&);
-void Xuat(int[][500], int, int);
+void Nhap(int[][100], int&, int&);
+void Xuat(int[][100], int, int);
+
 bool ktChinhPhuong(int);
-int ktCot(int[][500], int, int, int);
-void LietKe(int[][500], int, int);
+bool ktCot(int[][100], int, int, int);
+void LietKe(int[][100], int, int);
 
 int main()
 {
-	int k[500][500];
-	int a, b;
+	int b[100][100];
+	int k, l;
+	
+	cout << "Ma tran: \n";
+	Nhap(b, k, l);
 
-	cout << "Nhap ma tran: ";
-	Nhap(k, a, b);
+	cout << "\nMa tran ban dau : " << endl;
+	Xuat(b, k, l);
 
-	cout << "\nMa tran: " << endl;
-	Xuat(k, a, b);
-
-	cout << "\nMa tran: " << endl;
-	LietKe(k, a, b);
+	cout << "\nCac cot co so chinh phuong: ";
+	LietKe(b, k, l);
 
 	cout << "\n\n\nKet Thuc!!!";
 	return 0;
 }
 
-void Nhap(int a[][500], int& m, int& n)
+void Nhap(int a[][100], int& m, int& n)
 {
 	cout << "\nNhap so dong: ";
 	cin >> m;
@@ -38,7 +39,7 @@ void Nhap(int a[][500], int& m, int& n)
 			a[i][j] = rand() % (201) - 100;
 }
 
-void Xuat(int a[][500], int m, int n)
+void Xuat(int a[][100], int m, int n)
 {
 	for (int i = 0; i < m; i++)
 	{
@@ -57,18 +58,18 @@ bool ktChinhPhuong(int k)
 	return flag;
 }
 
-int ktCot(int a[][500], int m, int n, int c)
+bool ktCot(int a[][100], int m, int n, int c)
 {
-	int flag = 0;
+	bool flag = false;
 	for (int i = 0; i < m; i++)
-		if (ktChinhPhuong(a[i][c]) == true)
-			flag = 1;
+		if (ktChinhPhuong(a[i][c]))
+			flag = true;
 	return flag;
 }
 
-void LietKe(int a[][500], int m, int n)
+void LietKe(int a[][100], int m, int n)
 {
 	for (int j = 0; j < n; j++)
-		if (ktCot(a, m, n, j) == 1)
+		if (ktCot(a, m, n, j))
 			cout << setw(10) << j;
 }

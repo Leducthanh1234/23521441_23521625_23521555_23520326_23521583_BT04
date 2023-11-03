@@ -5,38 +5,41 @@ using namespace std;
 
 void Nhap(float[][100], int&, int&);
 void Xuat(float[][100], int, int);
+
 float LonNhatDong(float[][100], int, int, int);
 float LonNhatCot(float[][100], int, int, int);
-void XayDung(float[][100], int, int, float[][100]);
+void XayDung(float[][100], int, int, float[][100], int&, int&);
 
 int main()
 {
 	float b[100][100];
 	int k, l;
+	cout << "Ma tran: \n";
 	Nhap(b, k, l);
 
 	cout << "\nMa tran ban dau:\n";
 	Xuat(b, k, l);
 
 	float c[100][100];
-	XayDung(b, k, l, c);
+	int p, q;
+	XayDung(b, k, l, c, p, q);
 
 	cout << "Ma tran moi :\n";
-	Xuat(c, k, l);
+	Xuat(c, p, q);
 	cout << "\n\n\nKetthuc!";
 	return 0;
 }
 
 void Nhap(float a[][100], int& m, int& n)
 {
-	cout << "Nhap so dong: ";
+	cout << "\nNhap so dong: ";
 	cin >> m;
-	cout << "Nhap so cot: ";
+	cout << "\nNhap so cot: ";
 	cin >> n;
 	srand(time(NULL));
 	for (int i = 0; i < m; i++)
 		for (int j = 0; j < n; j++)
-			a[i][j] = -100.0 + (rand() / (RAND_MAX / (100.0 - (-100.0))));
+			a[i][j] = -100 + rand() / ((float)RAND_MAX / 200);;
 }
 
 void Xuat(float a[][100], int m, int n)
@@ -49,25 +52,36 @@ void Xuat(float a[][100], int m, int n)
 	}
 }
 
-float LonNhatDong(float a[][100], int m, int n, int c)
+float LonNhatDong(float a[][100], int m, int n, int d)
 {
-	float res = a[c][0];
-	for (int j = 0;j < n;j++)
-		res = max(res, a[c][j]);
-	return res;
+	float lc = a[d][0];
+	for (int j = 0; j < n; j++)
+		if (lc < a[d][j])
+			lc = a[d][j];
+	return lc;
 }
 
 float LonNhatCot(float a[][100], int m, int n, int c)
 {
-	float res = a[0][c];
+	float lc = a[0][c];
 	for (int i = 0;i < m;i++)
-		res = max(res, a[i][c]);
-	return res;
+		if (lc < a[i][c])
+			lc = a[i][c];
+	return lc;
 }
 
-void XayDung(float a[][100], int m, int n, float b[][100])
+void XayDung(float a[][100], int m, int n, float c[][100], int& d, int& e)
 {
-	for (int i = 0;i < m;i++)
-		for (int j = 0;j < n;j++)
-			b[i][j] = max(LonNhatDong(a, m, n, i), LonNhatCot(a, m, n, j));
+	d = m;
+	e = n;
+	for (int i = 0; i < d; i++)
+		for (int j = 0; j < e; j++)
+		{
+			float lnd = LonNhatDong(a, m, n, i);
+			float lnc = LonNhatCot(a, m, n, j);
+			if (lnd < lnc)
+				c[i][j] = lnc;
+			else
+				c[i][j] = lnd;
+		}
 }

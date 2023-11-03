@@ -2,31 +2,31 @@
 #include <iomanip>
 using namespace std;
 
-void Nhap(float[][500], int&, int&);
-void Xuat(float[][500], int, int);
+void Nhap(float[][100], int&, int&);
+void Xuat(float[][100], int, int);
 void HoanVi(float&, float&);
-void SapCotGiam(float[][500], int, int, int);
-void Xuat2(float[][500], int, int);
+void SapCotGiam(float[][100], int, int, int);
+void Xuat2(float[][100], int, int);
 
 int main()
 {
-	float k[500][500];
-	int a, b;
+	float b[100][100];
+	int k, l;
 
 	cout << "Nhap ma tran: ";
-	Nhap(k, a, b);
+	Nhap(b, k, l);
 
 	cout << "\nMa tran: " << endl;
-	Xuat(k, a, b);
+	Xuat(b, k, l);
 
 	cout << "\nSau khi cot duoc sap xep giam dan: " << endl;
-	Xuat2(k, a, b);
+	Xuat2(b, k, l);
 
 	cout << "\n\n\nKet Thuc!!!";
 	return 0;
 }
 
-void Nhap(float a[][500], int& m, int& n)
+void Nhap(float a[][100], int& m, int& n)
 {
 	cout << "\nNhap so dong: ";
 	cin >> m;
@@ -38,7 +38,7 @@ void Nhap(float a[][500], int& m, int& n)
 			a[i][j] = rand() / (RAND_MAX / 200.0) - 100.0;
 }
 
-void Xuat(float a[][500], int m, int n)
+void Xuat(float a[][100], int m, int n)
 {
 	for (int i = 0; i < m; i++)
 	{
@@ -55,7 +55,7 @@ void HoanVi(float& a, float& b)
 	b = temp;
 }
 
-void SapCotGiam(float a[][500], int m, int n, int c)
+void SapCotGiam(float a[][100], int m, int n, int c)
 {
 	for (int i = 0; i < m - 1; i++)
 		for (int j = i + 1; j < m; j++)
@@ -63,7 +63,7 @@ void SapCotGiam(float a[][500], int m, int n, int c)
 				HoanVi(a[i][c], a[j][c]);
 }
 
-void Xuat2(float a[][500], int m, int n)
+void Xuat2(float a[][100], int m, int n)
 {
 	for (int i = 0; i < m; i++)
 	{

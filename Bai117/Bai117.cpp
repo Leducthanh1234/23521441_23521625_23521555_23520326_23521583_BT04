@@ -1,55 +1,59 @@
 #include<iostream>
 #include<iomanip>
-
 using namespace std;
 
 void Nhap(float[][100], int&, int&);
 void Xuat(float[][100], int, int);
+
 void XayDung(float[][100], int, int, float[][100], int&, int&);
+
 int main()
 {
-	float a[100][100];
-	int n, m;
-	cout << "Ma tran: \n";
-	Nhap(a, n, m);
-	cout << "\nMa tran ban dau: \n";
-	Xuat(a, n, m);
 	float b[100][100];
 	int k, l;
-	XayDung(a, n, m, b, k, l);
-	cout << "Ma tran B duoc xay dung: \n";
+	
+	cout << "Ma tran: \n";
+	Nhap(b, k, l);
+
+	cout << "\nMa tran ban dau:\n";
 	Xuat(b, k, l);
+
+	float c[100][100];
+	int d, e;
+	XayDung(b, k, l, c, d, e);
+
+	cout << "Ma tran b duoc xay dung: \n";
+	Xuat(c, d, e);
+	cout << "\n\n\nKet thuc!!!";
 	return 0;
 }
 
-void Nhap(float a[][100], int& n, int& m)
+void Nhap(float a[][100], int& m, int& n)
 {
-	cout << "Nhap so dong: ";
-	cin >> n;
-	cout << "Nhap so cot: ";
+	cout << "\nNhap so dong : ";
 	cin >> m;
-	for (int i = 0; i < n; i++)
-		for (int j = 0; j < m; j++)
-		{
-			cout << "Nhap a[" << i << "][" << j << "]: ";
-			cin >> a[i][j];
-		}
+	cout << "\nNhap so cot : ";
+	cin >> n;
+	srand(time(NULL));
+	for (int i = 0; i < m; i++)
+		for (int j = 0; j < n; j++)
+			a[i][j] = -100 + rand() / ((float)RAND_MAX / 200);
 }
 
-void Xuat(float a[][100], int n, int m)
+void Xuat(float a[][100], int m, int n)
 {
-	for (int i = 0; i < n; i++)
+	for (int i = 0; i < m; i++)
 	{
-		for (int j = 0; j < m; j++)
-			cout << setw(8) << a[i][j];
+		for (int j = 0; j < n; j++)
+			cout << setw(10) << a[i][j];
 		cout << endl;
 	}
 }
 
-void XayDung(float a[][100], int n, int m, float b[][100], int& k, int& l)
+void XayDung(float a[][100], int m, int n, float b[][100], int& k, int& l)
 {
-	k = n;
-	l = m;
+	k = m;
+	l = n;
 	for (int i = 0; i < k; i++)
 		for (int j = 0; j < l; j++)
 			b[i][j] = abs(a[i][j]);
