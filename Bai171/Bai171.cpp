@@ -1,7 +1,9 @@
 #include <iostream>
 #include <iomanip>
-void Nhap(float[][500], int&, int&);
 using namespace std;
+
+void Nhap(float[][100], int&, int&);
+void Xuat(float[][100], int, int);
 
 int main()
 {
