@@ -10,10 +10,10 @@ int main()
     float b[100][100];
     int k, l;
 
-    cout << "\nNhap ma tran " << endl;
+    cout << "Ma tran: \n";
     Nhap(b, k, l);
 
-    cout << "\nMa tran ban dau : " << endl;
+    cout << "\nMa tran ban dau: \n";
     Xuat(b, k, l);
 
     cout << "\n\n\nKet thuc!!!";
